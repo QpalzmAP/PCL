@@ -151,7 +151,7 @@ Public Class CustomEvent
         打开文件
         打开帮助
         执行命令
-        启动游戏
+        原神启动
         复制文本
         刷新主页
         刷新页面
@@ -219,10 +219,10 @@ Public Class CustomEvent
                         End Try
                     End Sub)
 
-                Case EventType.启动游戏
+                Case EventType.原神启动
                     If Arg0 = "\current" Then
                         If McInstanceSelected Is Nothing Then
-                            Hint("请先选择一个 Minecraft 版本！", HintType.Red)
+                            Hint("请先选择一个 Minecraft 版本喵!", HintType.Red)
                             Return
                         Else
                             Arg0 = McInstanceSelected.Name
@@ -232,7 +232,7 @@ Public Class CustomEvent
                     Sub()
                         If McLaunchStart(New McLaunchOptions With
                                 {.ServerIp = If(Args.Length >= 2, Args(1), Nothing), .Instance = New McInstance(Arg0)}) Then
-                            Hint($"正在启动 {Arg0}……")
+                            Hint($"正在启动喵 {Arg0}……")
                         End If
                     End Sub)
 
@@ -243,15 +243,15 @@ Public Class CustomEvent
                     RunInUi(
                     Sub()
                         FrmLaunchRight.ForceRefresh()
-                        If String.IsNullOrEmpty(Arg) Then Hint("已刷新！", HintType.Green)
+                        If String.IsNullOrEmpty(Arg) Then Hint("已刷新喵！", HintType.Green)
                     End Sub)
 
                 Case EventType.刷新页面
                     If TypeOf FrmMain.PageRight Is IRefreshable Then
                         RunInUiWait(Sub() CType(FrmMain.PageRight, IRefreshable).Refresh())
-                        If String.IsNullOrEmpty(Arg) Then Hint("已刷新！", HintType.Green)
+                        If String.IsNullOrEmpty(Arg) Then Hint("已刷新喵！", HintType.Green)
                     Else
-                        Hint("当前页面不支持刷新操作！", HintType.Red)
+                        Hint("当前页面不支持刷新操作喵！", HintType.Red)
                     End If
 
                 Case EventType.刷新帮助
@@ -280,11 +280,11 @@ Public Class CustomEvent
                         Dim TargetPage = EnumUtils.FromString(Of PageType)(Arg0)
                         If TargetPage = PageType.InstanceSetup Then
                             If McInstanceSelected Is Nothing Then
-                                Hint("请先选择一个 Minecraft 版本！", HintType.Red)
+                                Hint("请先选择一个 Minecraft 版本喵！", HintType.Red)
                                 Return
                             End If
                             If McInstanceLock.IsLocked(McInstanceSelected) Then
-                                Hint("该版本正在被修改，暂时无法进入版本设置！", HintType.Red)
+                                Hint("该版本正在被修改，暂时无法进入版本设置喵！", HintType.Red)
                                 Return
                             End If
                             PageInstanceLeft.Instance = McInstanceSelected
@@ -339,7 +339,7 @@ Public Class CustomEvent
                         If String.IsNullOrWhiteSpace(Arg) Then
                             PageLinkMain.Join()
                         Else
-                            If Not EventSafetyConfirm("即将加入第三方联机房间。") Then Return
+                            If Not EventSafetyConfirm("即将加入第三方联机房间喵。") Then Return
                             PageLinkMain.Join(Arg)
                         End If
                     End Sub)
@@ -432,7 +432,7 @@ Public Class CustomEvent
     ''' </summary>
     Private Shared Function EventSafetyConfirm(Message As String) As Boolean
         If Settings.Get(Of Boolean)("HintCustomCommand") Then Return True
-        Select Case MyMsgBox(Message & vbCrLf & "请在确认没有安全隐患后再继续。", "执行确认", "继续", "继续且今后不再要求确认", "取消")
+        Select Case MyMsgBox(Message & vbCrLf & "请在确认没有安全隐患后再继续。", "执行确认", "继续喵", "继续且今后不再要求确认", "取消喵!")
             Case 1
                 Return True
             Case 2
