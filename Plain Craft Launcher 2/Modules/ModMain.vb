@@ -179,7 +179,7 @@ EndHint:
         ''' 有多个按钮时，是否给第一个按钮加高亮。
         ''' </summary>
         Public HighLight As Boolean
-        Public Button1 As String = "确定"
+        Public Button1 As String = "好吧"
         Public Button2 As String = ""
         Public Button3 As String = ""
         ''' <summary>
@@ -227,8 +227,8 @@ EndHint:
     ''' <param name="Button2Action">点击第二个按钮将执行该方法，不关闭弹窗。</param>
     ''' <param name="Button3Action">点击第三个按钮将执行该方法，不关闭弹窗。</param>
     ''' <param name="IsWarn">是否为警告弹窗，若为 True，弹窗配色和背景会变为红色。</param>
-    Public Function MyMsgBox(Caption As String, Optional Title As String = "提示",
-                             Optional Button1 As String = "确定", Optional Button2 As String = "", Optional Button3 As String = "",
+    Public Function MyMsgBox(Caption As String, Optional Title As String = "!!!",
+                             Optional Button1 As String = "好的喵", Optional Button2 As String = "", Optional Button3 As String = "",
                              Optional IsWarn As Boolean = False, Optional HighLight As Boolean = True, Optional ForceWait As Boolean = False,
                              Optional Button1Action As Action = Nothing, Optional Button2Action As Action = Nothing, Optional Button3Action As Action = Nothing) As Integer
         '将弹窗列入队列
@@ -283,7 +283,7 @@ EndHint:
     ''' <param name="Button1">显示的第一个按钮，默认为“确定”。</param>
     ''' <param name="Button2">显示的第二个按钮，默认为“取消”。</param>
     ''' <param name="IsWarn">是否为警告弹窗，若为 True，弹窗配色和背景会变为红色。</param>
-    Public Function MyMsgBoxInput(Title As String, Optional Text As String = Nothing, Optional DefaultInput As String = Nothing, Optional ValidateRules As Collection(Of Validate) = Nothing, Optional HintText As String = "", Optional Button1 As String = "确定", Optional Button2 As String = "取消", Optional IsWarn As Boolean = False) As String
+    Public Function MyMsgBoxInput(Title As String, Optional Text As String = Nothing, Optional DefaultInput As String = Nothing, Optional ValidateRules As Collection(Of Validate) = Nothing, Optional HintText As String = "", Optional Button1 As String = "好的喵", Optional Button2 As String = "不要喵", Optional IsWarn As Boolean = False) As String
         '将弹窗列入队列
         Dim Converter As New MyMsgBoxConverter With {.Text = If(Text, ""), .HintText = If(HintText, ""), .Type = MyMsgBoxType.Input, .ValidateRules = If(ValidateRules, New Collection(Of Validate)), .Button1 = Button1, .Button2 = Button2, .Content = DefaultInput, .IsWarn = IsWarn, .Title = Title}
         WaitingMyMsgBox.Enqueue(Converter)
